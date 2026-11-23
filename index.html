@@ -95,7 +95,7 @@ function satop(){try{return ((tg.safeAreaInset||{}).top||0)+((tg.contentSafeArea
 function rr(x,y,w,h,r){ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,r||10);else ctx.rect(x,y,w,h);}
 var actx=null;
 function initAudio(){try{if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();if(actx.state==='suspended')actx.resume();}catch(e){}}
-function beep(f,d,ty,v){try{if(!actx||S.mute)return;var o=actx.createOscillator(),g=actx.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(v||0.1,actx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,actx.currentTime+d);o.connect(g);g.connect(actx.destination);o.start();o.stop(actx.currentTime+d);}catch(e){}}
+function beep(f,d,ty,v){try{if(!actx||S2.mute)return;var o=actx.createOscillator(),g=actx.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(v||0.1,actx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,actx.currentTime+d);o.connect(g);g.connect(actx.destination);o.start();o.stop(actx.currentTime+d);}catch(e){}}
 function buzz(k){try{tg&&tg.HapticFeedback&&tg.HapticFeedback.notificationOccurred(k);}catch(e){}}
 function tick(){try{tg&&tg.HapticFeedback&&tg.HapticFeedback.impactOccurred('light');}catch(e){}}
 function jingle(){[523,659,784,1046].forEach(function(f,i){setTimeout(function(){beep(f,.2,'triangle',.12);},i*110);});}
