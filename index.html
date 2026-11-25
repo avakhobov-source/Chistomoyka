@@ -158,13 +158,13 @@ function drawVeh(t,x,y,sc,sil,col){ctx.save();ctx.translate(x,y);ctx.scale(sc,sc
 var EV=[
  {id:'race',e:'🏁',n:'После гонки',d:'Гонщик вернулся с трассы весь в грязи!',v:'race',z:[-90,-14,92,28],cnt:9,cols:['#6b4a2b','#8a6a43','#5a3d22'],k:'blob'},
  {id:'build',e:'🚧',n:'Стройка',d:'Бульдозер весь в пыли и цементе.',v:'bulldozer',z:[-48,-40,58,12],cnt:9,cols:['#b9ad8f','#9a9078','#c9c2ad'],k:'blob'},
- {id:'rain',e:'🌧️',n:'Дождь и лужи',d:'Такси проехало все лужи города!',v:'taxi',z:[-84,-4,84,28],cnt:10,cols:['#7a5a3a','#5a4128','#8f6e4a'],k:'blob'},
+ {id:'rain',e:'☔',n:'Дождь и лужи',d:'Такси проехало все лужи города!',v:'taxi',z:[-84,-4,84,28],cnt:10,cols:['#7a5a3a','#5a4128','#8f6e4a'],k:'blob'},
  {id:'fire',e:'🔥',n:'После пожара',d:'Пожарная вся в саже. Отмой героев!',v:'fire',z:[-92,-30,92,24],cnt:10,cols:['#2a2a2e','#3b3b42','#1f1f23'],k:'blob'},
  {id:'farm',e:'🌾',n:'На ферме',d:'Трактор вспахал всё поле.',v:'tractor',z:[-30,-34,70,16],cnt:10,cols:['#6b4a2b','#5b7a2b','#8a6a43'],k:'blob'},
  {id:'party',e:'🎉',n:'Праздник',d:'Машину обсыпали конфетти и красками!',v:'sedan',z:[-84,-24,84,26],cnt:12,cols:['#ff4d8d','#ffd21f','#4aa8ff','#4cd964','#ff8f1f'],k:'conf'},
  {id:'birds',e:'🐦',n:'Птичий двор',d:'Над джипом пролетела стая птиц…',v:'jeep',z:[-86,-34,86,10],cnt:9,cols:['#f4f4f0','#e6e6df'],k:'drop'},
- {id:'winter',e:'❄️',n:'Зима',d:'Автобус в соли и снежной каше.',v:'bus',z:[-90,-30,90,28],cnt:11,cols:['#d9dde0','#c3c8cc','#eceff1'],k:'blob'},
- {id:'quarry',e:'⛏️',n:'Карьер',d:'Самосвал вернулся из карьера.',v:'dump',z:[-92,-50,38,4],cnt:11,cols:['#a0623a','#8a4f2b','#b8794a'],k:'blob'},
+ {id:'winter',e:'⛄',n:'Зима',d:'Автобус в соли и снежной каше.',v:'bus',z:[-90,-30,90,28],cnt:11,cols:['#d9dde0','#c3c8cc','#eceff1'],k:'blob'},
+ {id:'quarry',e:'🪨',n:'Карьер',d:'Самосвал вернулся из карьера.',v:'dump',z:[-92,-50,38,4],cnt:11,cols:['#a0623a','#8a4f2b','#b8794a'],k:'blob'},
  {id:'chase',e:'🚓',n:'Погоня',d:'Полиция гналась по грязной дороге.',v:'police',z:[-84,-4,84,28],cnt:10,cols:['#6b4a2b','#8a6a43','#4a3320'],k:'blob'},
  {id:'trip',e:'🚑',n:'Долгий путь',d:'Скорая проехала сотни километров по пыли.',v:'ambulance',z:[-90,-30,90,26],cnt:10,cols:['#c9b78f','#b5a37a','#d8c9a3'],k:'blob'}
 ];
@@ -264,7 +264,7 @@ function drawPlay(){geo();bay();var sa=satop();drawCar();if(state!=='shine'&&sta
  for(var s=1;s<=5;s++){var cur=s===phase&&state==='play',dn=s<phase||state!=='play';ctx.fillStyle=cur?'#fff':dn?'#b7f5c4':'rgba(255,255,255,.55)';rr(x0+(s-1)*sw+3,sa+48,sw-6,34,10);ctx.fill();if(cur){ctx.strokeStyle='#2fb4ff';ctx.lineWidth=3;ctx.stroke();}ctx.font='20px system-ui';ctx.fillStyle='#000';ctx.fillText(ICONS[s],x0+(s-.5)*sw,sa+66);}
  var bw=W-60,bx=30,by=sa+90;ctx.fillStyle='rgba(255,255,255,.8)';rr(bx,by,bw,10,5);ctx.fill();ctx.fillStyle='#2fb4ff';rr(bx,by,Math.max(8,bw*p),10,5);ctx.fill();
  if(state==='play'){ctx.fillStyle='#14507a';ctx.font='bold 17px system-ui';ctx.fillText(T(HINT[phase]),W/2,H-70);ctx.font='13px system-ui';ctx.fillStyle='#3d6a8a';ctx.fillText(T(TN[KEY[phase]][lvl()-1])+' · '+((performance.now()-t0)/1000).toFixed(0)+' '+T('сек'),W/2,H-46);
-  if(autoAvail()){var aw=Math.min(300,W-48);btn((W-aw)/2,H-134,aw,50,'⚙️ '+T('Включить: ')+T(TN[KEY[phase]][2]),startAuto,true,17);}}}
+  if(autoAvail()){var aw=Math.min(300,W-48);btn((W-aw)/2,H-134,aw,50,'🔩 '+T('Включить: ')+T(TN[KEY[phase]][2]),startAuto,true,17);}}}
 function drawShine(){drawPlay();var d=(performance.now()-shineT)/1000;
  sparks.forEach(function(s){var a=Math.sin(Math.max(0,d-s.d)*4);if(a<=0)return;ctx.globalAlpha=Math.min(1,a);ctx.font=(18+a*14)+'px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff';ctx.fillText('✨',s.x,s.y);});ctx.globalAlpha=1;
  ctx.font='bold 34px system-ui';ctx.textAlign='center';ctx.fillStyle='#fff';ctx.strokeStyle='#168ad0';ctx.lineWidth=6;ctx.strokeText(T('Блестит! ✨'),W/2,satop()+110);ctx.fillText(T('Блестит! ✨'),W/2,satop()+110);
